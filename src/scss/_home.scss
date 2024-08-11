@@ -1,0 +1,105 @@
+.s-hero {
+  width: 100%;
+  height: 80.4rem;
+  background: linear-gradient(114deg, #1a0078 -25.6%, #6f47ff 121.77%);
+  padding-top: 18rem;
+  overflow-x: hidden;
+  .container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .left {
+      flex: 1;
+      max-width: 66.1rem;
+      h3 {
+        letter-spacing: -0.05rem;
+        opacity: 0.8;
+        font-size: 2.4rem;
+        color: rgba(255, 255, 255, 0.56);
+        font-weight: 600;
+        margin-bottom: 3.2rem;
+      }
+      h1 {
+        line-height: 115%;
+        color: var(--gray-100);
+        font-weight: 600;
+        width: 66.1rem;
+        margin-bottom: 3.2rem;
+      }
+      ul {
+        margin-top: 6.4rem;
+        display: flex;
+        gap: 6.2rem;
+        li {
+          display: flex;
+          gap: 1.2rem;
+          align-items: center;
+          .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 4.8rem;
+            height: 4.8rem;
+            border-radius: 4.8rem;
+            &::after {
+              content: "";
+              width: 4.8rem;
+              height: 4.8rem;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              border-radius: 4.8rem;
+              opacity: 0.4;
+              background: linear-gradient(
+                180deg,
+                #653df5 22.4%,
+                rgba(69, 38, 180, 0) 77.08%
+              );
+            }
+          }
+          span {
+            line-height: 120%;
+            color: var(--white);
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+    .right {
+      flex: 1;
+      max-width: 60.8rem;
+      text-align: center;
+      margin-right: -9.7rem;
+      h2 {
+        color: rgba(255, 255, 255, 0.48);
+        font-size: 4.8rem;
+        font-weight: 600;
+        line-height: 100%;
+        letter-spacing: -0.2rem;
+        opacity: 0.4;
+        margin-bottom: 6.3rem;
+      }
+      .cards {
+        position: relative;
+        width: 100%;
+        height: 44.2rem;
+
+        .item {
+          position: absolute;
+          &.card-one {
+            top: 0;
+            left: 0;
+            z-index: 10;
+          }
+          &.card-two {
+            bottom: 0;
+            right: 0;
+            z-index: 9;
+          }
+        }
+      }
+    }
+  }
+}
