@@ -26,3 +26,30 @@
     }
   }
 }
+
+.card-testimonial {
+  width: 100%;
+  max-width: 38.4rem;
+  height: 20.9rem;
+  border-radius: 8px;
+  background-color: rgba(241, 240, 245, 0.8);
+  padding: 3.7rem 4rem 2.3rem 3.2rem;
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.1rem;
+    span {
+      font-size: 1.8rem;
+      color: var(--gray-800);
+      font-weight: 600;
+      line-height: 112%;
+      letter-spacing: -0.05rem;
+    }
+  }
+  p {
+    line-height: 2.7rem;
+    font-size: 1.8rem;
+    color: var(--gray-600);
+  }
+}
