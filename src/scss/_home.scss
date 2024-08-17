@@ -281,6 +281,7 @@
         color: rgba(var(--gray-500-80), 0.8);
         line-height: 112%;
         strong {
+          font-family: "Poppins", sans-serif;
           display: block;
           letter-spacing: -0.1rem;
           color: var(--gray-800);
@@ -307,6 +308,87 @@
     }
     .slide-testimonials {
       overflow-x: hidden;
+    }
+  }
+}
+
+.s-account {
+  padding-top: 8.75rem;
+  padding-bottom: 14.1rem;
+  overflow-x: hidden;
+  .container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    .left {
+      flex: 1;
+      max-width: 53.2rem;
+      h2 {
+        font-size: 4rem;
+        font-weight: 600;
+        color: rgba(171, 175, 186, 0.8);
+        letter-spacing: -0.1rem;
+        line-height: 112%;
+        strong {
+          margin-top: 0.8rem;
+          font-weight: 600;
+          display: block;
+          color: var(--gray-800);
+          font-family: "Poppins", sans-serif;
+        }
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 4.8rem;
+        margin: 4.8rem 0;
+        li {
+          display: flex;
+          align-items: center;
+          gap: 2.4rem;
+          .icon {
+            width: 4.8rem;
+            height: 4.8rem;
+            border-radius: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--purple-30);
+          }
+          .texts {
+            flex: 1;
+            h4 {
+              font-size: 2rem;
+              font-weight: 600;
+              letter-spacing: -0.05rem;
+              color: var(--gray-800);
+              margin-bottom: 0.2rem;
+            }
+            span {
+              line-height: 2.7rem;
+              color: var(--gray-600);
+              font-size: 1.8rem;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      position: relative;
+      flex: 1;
+      max-width: 47.9rem;
+      height: 52.9rem;
+      .mockup {
+        position: absolute;
+        &.one {
+          left: -5rem;
+          bottom: -6rem;
+        }
+        &.two {
+          top: -4rem;
+          right: -5rem;
+        }
+      }
     }
   }
 }
