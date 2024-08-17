@@ -264,3 +264,49 @@
     }
   }
 }
+
+.s-testimonials {
+  padding-top: 6.7rem;
+  padding-bottom: 8.45rem;
+  .container {
+    .title {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4.6rem;
+      h2 {
+        font-size: 4rem;
+        font-weight: 600;
+        letter-spacing: -0.1rem;
+        color: rgba(var(--gray-500-80), 0.8);
+        line-height: 112%;
+        strong {
+          display: block;
+          letter-spacing: -0.1rem;
+          color: var(--gray-800);
+          opacity: 1;
+          font-weight: 700;
+        }
+      }
+      .swiper-pagination {
+        position: relative;
+        width: auto;
+        bottom: 0;
+        &-bullet {
+          background-color: var(--purple-20);
+          opacity: 0.3;
+          width: 1.2rem;
+          border-radius: 0.5rem;
+          transition: all 0.5s ease;
+          &-active {
+            opacity: 1;
+            width: 1.7rem;
+          }
+        }
+      }
+    }
+    .slide-testimonials {
+      overflow-x: hidden;
+    }
+  }
+}
