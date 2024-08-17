@@ -1,0 +1,125 @@
+footer {
+  background-color: var(--purple-10);
+  padding: 4rem 0;
+  position: relative;
+  &::after {
+    content: "";
+    width: 100%;
+    max-width: 121.6rem;
+    height: 0.4rem;
+    background: #ffc800;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .container {
+    .area-social {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 4rem;
+      margin-bottom: 4rem;
+      .social-media {
+        display: flex;
+        align-items: center;
+        gap: 2.4rem;
+        span {
+          font-size: 1.4rem;
+          color: var(--white);
+          opacity: 0.7;
+          font-weight: 400;
+        }
+        ul {
+          display: flex;
+          align-items: center;
+          gap: 3rem;
+        }
+      }
+    }
+    .main-area {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 5.6rem;
+      margin-bottom: 2.4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      .left {
+        flex: 1;
+        max-width: 84.1rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        .item {
+          h5 {
+            margin-bottom: 3.2rem;
+            font-family: "Inter", sans-serif;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.6rem;
+          }
+          ul {
+            li {
+              &:not(:last-child) {
+                margin-bottom: 3.2rem;
+              }
+              a {
+                font-size: 1.4rem;
+                color: var(--white);
+                opacity: 0.67;
+                font-weight: 400;
+                transition: opacity 0.3s ease;
+                &:hover {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+      .right {
+        flex: 1;
+        max-width: 29.9rem;
+        a {
+          display: flex;
+          gap: 1.6rem;
+          align-items: center;
+          border-radius: 0.6rem;
+          background: rgba(255, 255, 255, 0.04);
+          padding: 2.6rem 1.5rem 2.6rem 2.4rem;
+          &:not(:last-child) {
+            margin-bottom: 2.4rem;
+          }
+          .description {
+            strong {
+              font-size: 1.4rem;
+              color: var(--white);
+              line-height: 150%;
+              font-weight: 600;
+            }
+            p {
+              font-weight: 400;
+              font-size: 1.4rem;
+              color: var(--white);
+            }
+          }
+        }
+      }
+    }
+    .copy {
+      .text {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.6rem;
+        width: 69.4rem;
+        p {
+          font-size: 1.4rem;
+          font-weight: 400;
+          color: var(--white);
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
