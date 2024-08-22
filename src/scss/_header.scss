@@ -35,5 +35,37 @@ header {
         }
       }
     }
+    .btn-mobile {
+      display: none;
+    }
+  }
+  @include responsive("laptop") {
+    .container {
+      gap: 4rem;
+      nav {
+        gap: 3.2rem;
+        max-width: 83rem;
+      }
+    }
+  }
+  @include responsive("lap-xs") {
+    .container {
+      nav {
+        ul {
+          gap: 1.6rem;
+          max-width: 49rem;
+        }
+      }
+    }
+  }
+  @include responsive("tablet") {
+    .container {
+      nav {
+        display: none;
+      }
+      .btn-mobile {
+        display: block;
+      }
+    }
   }
 }
