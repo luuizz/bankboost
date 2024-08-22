@@ -12,6 +12,20 @@ const slides: SwiperOptions = {
     el: ".s-testimonials .title .swiper-pagination",
     clickable: true,
   },
+  breakpoints: {
+    320: {
+      slidesPerView: 1.3,
+      spaceBetween: 17,
+    },
+    768: {
+      slidesPerView: 2.1,
+      spaceBetween: 20,
+    },
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 32,
+    },
+  },
 };
 
 export const slidesTestimonials = new Swiper(".slide-testimonials", slides);
