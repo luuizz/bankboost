@@ -5,7 +5,8 @@ Banco digital fictício criado a partir do projeto da landing do curso Codeboost
 ## Stack
 
 - **Laravel 13** (PHP 8.4) com MySQL
-- **Landing** em Blade + SCSS + TypeScript (Vite)
+- **Site institucional** em Blade + Tailwind 4: home, conta digital, cartão, investimentos, empréstimo, conta PJ, quem somos, carreiras, blog, central de ajuda e páginas legais
+- **Ícones** Phosphor no site (`blade-phosphor-icons`) e no painel (`@phosphor-icons/vue`)
 - **Painel** do cliente em Inertia + Vue 3 + Tailwind: saldo, extrato com filtros, transferência, Pix e comprovantes
 - **API** autenticada com Sanctum: contas, extrato com filtros, transferências e Pix simulados ([docs/api.md](docs/api.md))
 - **Deploy** no Render (Docker, plano free) com banco MySQL compatível
@@ -23,6 +24,8 @@ composer install
 ```
 
 A aplicação fica em `http://localhost` (landing) e `http://localhost/painel` (painel; cadastro em `/abrir-conta`). O Sail já cria o banco `testing` usado pelos testes.
+
+O conteúdo do site (posts, FAQ e vagas) vem do `SiteContentSeeder`, que roda no deploy e só preenche tabelas vazias.
 
 Para ter dados de exemplo: `./vendor/bin/sail artisan db:seed` (usuários `ana@bankboost.test` e `bruno@bankboost.test`, senha `password`).
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, Link, usePage } from '@inertiajs/vue3';
+import { PhArrowsLeftRight, PhHouse, PhListBullets, PhQrCode, PhSignOut } from '@phosphor-icons/vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 import type { SharedProps } from '@/types';
 
@@ -8,10 +9,10 @@ defineProps<{ title: string }>();
 const page = usePage<SharedProps>();
 
 const nav = [
-    { label: 'Início', href: '/painel' },
-    { label: 'Extrato', href: '/painel/extrato' },
-    { label: 'Transferir', href: '/painel/transferir' },
-    { label: 'Pix', href: '/painel/pix' },
+    { label: 'Início', href: '/painel', icon: PhHouse },
+    { label: 'Extrato', href: '/painel/extrato', icon: PhListBullets },
+    { label: 'Transferir', href: '/painel/transferir', icon: PhArrowsLeftRight },
+    { label: 'Pix', href: '/painel/pix', icon: PhQrCode },
 ];
 
 function isActive(href: string): boolean {
@@ -36,16 +37,18 @@ function isActive(href: string): boolean {
                         v-for="item in nav"
                         :key="item.href"
                         :href="item.href"
-                        class="rounded-lg px-4 py-2 text-sm font-semibold transition"
+                        class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition"
                         :class="isActive(item.href) ? 'bg-white/15 text-white' : 'text-white/75 hover:text-white'"
                     >
+                        <component :is="item.icon" :size="18" weight="duotone" />
                         {{ item.label }}
                     </Link>
                 </nav>
 
                 <div class="flex items-center gap-4">
                     <span class="hidden text-sm text-white/80 sm:inline">{{ page.props.auth.user?.name }}</span>
-                    <Link href="/sair" method="post" as="button" class="rounded-lg border border-white/30 px-3 py-1.5 text-sm font-semibold hover:bg-white/10">
+                    <Link href="/sair" method="post" as="button" class="flex items-center gap-1.5 rounded-lg border border-white/30 px-3 py-1.5 text-sm font-semibold hover:bg-white/10">
+                        <PhSignOut :size="16" />
                         Sair
                     </Link>
                 </div>

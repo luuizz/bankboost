@@ -1,0 +1,85 @@
+/* Fontes e paleta compartilhadas entre o site e o painel (mesmas cores da landing original) */
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter18pt-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter18pt-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter18pt-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@theme {
+    --font-title: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    --color-brand-10: #35189c;
+    --color-brand-20: #5431d0;
+    --color-brand-30: #653df5;
+    --color-brand-40: #4d20ef;
+    --color-brand-50: #3401ee;
+
+    --color-accent: #e9c300;
+
+    --color-ink-100: #f5f6fa;
+    --color-ink-200: #dfe1e8;
+    --color-ink-300: #c0c3cc;
+    --color-ink-400: #abafba;
+    --color-ink-500: #979ba6;
+    --color-ink-600: #787c87;
+    --color-ink-700: #5c5f69;
+    --color-ink-800: #393b42;
+    --color-ink-900: #0a0b0d;
+}
+
+
+@theme {
+    --color-lilac-50: #f3f0ff;
+    --color-lilac-100: #e9e3ff;
+    --color-lilac-200: #d6ccff;
+
+    --animate-float: float 6s ease-in-out infinite;
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-12px);
+        }
+    }
+}

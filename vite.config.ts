@@ -7,7 +7,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/js/landing/main.ts', 'resources/js/app.ts'],
+            input: ['resources/css/site.css', 'resources/js/site/main.ts', 'resources/js/app.ts'],
             refresh: true,
         }),
         vue({
@@ -23,14 +23,6 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./resources/js', import.meta.url)),
-        },
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                // Os parciais da landing ainda usam @import; a migração para @use fica para depois.
-                silenceDeprecations: ['import', 'global-builtin'],
-            },
         },
     },
     server: {

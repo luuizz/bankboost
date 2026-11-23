@@ -7,9 +7,38 @@ use App\Http\Controllers\Panel\MovementController;
 use App\Http\Controllers\Panel\PixController;
 use App\Http\Controllers\Panel\StatementController;
 use App\Http\Controllers\Panel\TransferController;
+use App\Http\Controllers\Site\BlogController;
+use App\Http\Controllers\Site\CareersController;
+use App\Http\Controllers\Site\HelpController;
+use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\SitemapController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'landing.index')->name('home');
+/*
+| Site institucional
+*/
+Route::get('/', HomeController::class)->name('home');
+
+Route::name('site.')->group(function () {
+    Route::view('conta-digital', 'site.pages.account')->name('account');
+    Route::view('cartao', 'site.pages.card')->name('card');
+    Route::view('investimentos', 'site.pages.investments')->name('investments');
+    Route::view('emprestimo', 'site.pages.loans')->name('loans');
+    Route::view('conta-pj', 'site.pages.business')->name('business');
+    Route::view('quem-somos', 'site.pages.about')->name('about');
+    Route::get('carreiras', CareersController::class)->name('careers');
+
+    Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('blog/{post}', [BlogController::class, 'show'])->name('blog.show');
+
+    Route::get('ajuda', [HelpController::class, 'index'])->name('help');
+    Route::post('ajuda/contato', [HelpController::class, 'contact'])->middleware('throttle:contact')->name('help.contact');
+
+    Route::view('termos', 'site.pages.legal', ['page' => 'terms'])->name('terms');
+    Route::view('privacidade', 'site.pages.legal', ['page' => 'privacy'])->name('privacy');
+});
+
+Route::get('sitemap.xml', SitemapController::class)->name('sitemap');
 
 Route::middleware('guest')->group(function () {
     Route::get('entrar', [SessionController::class, 'create'])->name('login');
