@@ -102,7 +102,7 @@ class ContentTest extends TestCase
 
     public function test_previa_do_markdown_escapa_html(): void
     {
-        $this->postJson('/admin/posts/preview', ['body' => "**forte** <script>x</script>"])
+        $this->postJson('/admin/posts/preview', ['body' => '**forte** <script>x</script>'])
             ->assertOk()
             ->assertJsonPath('html', fn (string $html) => str_contains($html, '<strong>forte</strong>') && ! str_contains($html, '<script>'));
     }
