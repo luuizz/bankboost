@@ -37,7 +37,7 @@
         </li>
       </ul>
 
-      <a href="#" class="btn">Abra sua conta digital</a>
+      <a href="{{ route('register') }}" class="btn">Abra sua conta digital</a>
     </div>
 
     <div class="right">

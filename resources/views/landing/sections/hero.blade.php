@@ -3,7 +3,7 @@
     <div class="left" data-aos="fade-right">
       <h3>Abra sua conta, é só baixar o app!</h3>
       <h1>Desperte seu potencial financeiro com o Bankboost!</h1>
-      <a href="#" class="btn">Abra sua conta digital</a>
+      <a href="{{ route('register') }}" class="btn">Abra sua conta digital</a>
 
       <ul>
         <li>
