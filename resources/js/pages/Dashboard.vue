@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Link, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import InputError from '@/Components/InputError.vue';
-import MoneyInput from '@/Components/MoneyInput.vue';
-import TransactionItem from '@/Components/TransactionItem.vue';
-import PanelLayout from '@/Layouts/PanelLayout.vue';
+import InputError from '@/components/InputError.vue';
+import MoneyInput from '@/components/MoneyInput.vue';
+import TransactionItem from '@/components/TransactionItem.vue';
+import PanelLayout from '@/layouts/PanelLayout.vue';
 import { firstError } from '@/lib/forms';
 import { formatCents } from '@/lib/money';
 import type { Account, Transaction } from '@/types';

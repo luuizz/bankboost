@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Link, router } from '@inertiajs/vue3';
 import { reactive } from 'vue';
-import TransactionItem from '@/Components/TransactionItem.vue';
-import PanelLayout from '@/Layouts/PanelLayout.vue';
+import TransactionItem from '@/components/TransactionItem.vue';
+import PanelLayout from '@/layouts/PanelLayout.vue';
 import { formatCents } from '@/lib/money';
 import type { Option, Paginated, Transaction, TransactionType } from '@/types';
 

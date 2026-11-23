@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Link, useForm } from '@inertiajs/vue3';
-import InputError from '@/Components/InputError.vue';
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import InputError from '@/components/InputError.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 
 const form = useForm({
     name: '',

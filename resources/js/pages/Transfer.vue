@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
-import InputError from '@/Components/InputError.vue';
-import MoneyInput from '@/Components/MoneyInput.vue';
-import PanelLayout from '@/Layouts/PanelLayout.vue';
+import InputError from '@/components/InputError.vue';
+import MoneyInput from '@/components/MoneyInput.vue';
+import PanelLayout from '@/layouts/PanelLayout.vue';
 import { firstError } from '@/lib/forms';
 import { formatCents, newIdempotencyKey } from '@/lib/money';
 import type { Account } from '@/types';

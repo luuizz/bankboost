@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import FlashMessage from '@/Components/FlashMessage.vue';
+import FlashMessage from '@/components/FlashMessage.vue';
 import type { SharedProps } from '@/types';
 
 defineProps<{ title: string }>();

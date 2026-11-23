@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import PanelLayout from '@/Layouts/PanelLayout.vue';
+import PanelLayout from '@/layouts/PanelLayout.vue';
 import { formatDateTime } from '@/lib/money';
 import type { TransferReceipt } from '@/types';
 
