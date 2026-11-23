@@ -7,7 +7,7 @@ Banco digital fictício criado a partir do projeto da landing do curso Codeboost
 - **Laravel 13** (PHP 8.4) com MySQL
 - **Landing** em Blade + SCSS + TypeScript (Vite)
 - **Painel** em Inertia + Vue 3 *(em construção)*
-- **API** autenticada com Sanctum *(em construção)*
+- **API** autenticada com Sanctum: contas, extrato com filtros, transferências e Pix simulados ([docs/api.md](docs/api.md))
 - **Deploy** no Render (Docker, plano free) com banco MySQL compatível
 
 ## Rodando localmente (Sail)
@@ -23,6 +23,8 @@ composer install
 ```
 
 A aplicação fica em `http://localhost`. O Sail já cria o banco `testing` usado pelos testes.
+
+Para ter dados de exemplo: `./vendor/bin/sail artisan db:seed` (usuários `ana@bankboost.test` e `bruno@bankboost.test`, senha `password`).
 
 ## Qualidade
 
