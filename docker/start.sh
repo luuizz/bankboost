@@ -13,6 +13,7 @@ if [ -n "$MYSQL_SSL_CA_PEM" ]; then
     export MYSQL_ATTR_SSL_CA=/tmp/mysql-ca.pem
 fi
 
+php artisan storage:link --force >/dev/null 2>&1 || true
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache

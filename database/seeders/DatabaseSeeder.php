@@ -12,11 +12,16 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Duas contas de demonstração com movimentações. Senha: password
+     * Admin e duas contas de demonstração com movimentações. Senha de todos: password
      */
     public function run(Ledger $ledger, PixService $pix): void
     {
         $this->call(SiteContentSeeder::class);
+
+        User::factory()->admin()->create([
+            'name' => 'Admin Bankboost',
+            'email' => 'admin@bankboost.test',
+        ]);
 
         $ana = User::factory()->withAccount()->create([
             'name' => 'Ana Souza',

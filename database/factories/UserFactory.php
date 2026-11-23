@@ -36,6 +36,11 @@ class UserFactory extends Factory
         ];
     }
 
+    public function admin(): static
+    {
+        return $this->state(['is_admin' => true]);
+    }
+
     /**
      * Já cria o usuário com a conta aberta.
      */

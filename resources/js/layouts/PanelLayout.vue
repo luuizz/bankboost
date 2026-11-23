@@ -47,6 +47,7 @@ function isActive(href: string): boolean {
 
                 <div class="flex items-center gap-4">
                     <span class="hidden text-sm text-white/80 sm:inline">{{ page.props.auth.user?.name }}</span>
+                    <Link v-if="page.props.auth.user?.is_admin" href="/admin" class="rounded-lg bg-accent px-3 py-1.5 text-sm font-semibold text-brand-10">Admin</Link>
                     <Link href="/sair" method="post" as="button" class="flex items-center gap-1.5 rounded-lg border border-white/30 px-3 py-1.5 text-sm font-semibold hover:bg-white/10">
                         <PhSignOut :size="16" />
                         Sair
