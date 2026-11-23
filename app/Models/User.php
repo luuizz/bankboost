@@ -20,6 +20,20 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Mesmo default do banco, para um usuário recém-criado já responder isAdmin().
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'is_admin' => false,
+    ];
+
+    public function isAdmin(): bool
+    {
+        return $this->is_admin === true;
+    }
+
+    /**
      * @return HasOne<Account, $this>
      */
     public function account(): HasOne
@@ -37,6 +51,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 }

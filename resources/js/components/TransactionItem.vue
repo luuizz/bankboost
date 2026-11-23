@@ -5,7 +5,7 @@ import { computed } from 'vue';
 import { formatDateTime } from '@/lib/money';
 import type { Transaction } from '@/types';
 
-const props = defineProps<{ transaction: Transaction }>();
+const props = defineProps<{ transaction: Transaction; admin?: boolean }>();
 
 const isCredit = computed(() => props.transaction.direction === 'credit');
 
@@ -44,6 +44,11 @@ const icon = computed(() => {
         <div class="min-w-0 flex-1">
             <p class="truncate font-semibold text-ink-900">{{ title }}</p>
             <p class="truncate text-sm text-ink-600">{{ subtitle }}</p>
+            <p v-if="admin && transaction.account" class="truncate text-xs text-ink-500">
+                <Link :href="`/admin/clientes/${transaction.account.id}`" class="hover:text-brand-40 hover:underline">
+                    Conta {{ transaction.account.number }}<template v-if="transaction.account.holder"> · {{ transaction.account.holder }}</template>
+                </Link>
+            </p>
         </div>
 
         <div class="text-right">
@@ -52,7 +57,7 @@ const icon = computed(() => {
             </p>
             <p class="text-xs text-ink-500">
                 <Link
-                    v-if="transaction.transfer_id"
+                    v-if="transaction.transfer_id && !admin"
                     :href="`/painel/comprovantes/${transaction.transfer_id}`"
                     class="hover:text-brand-40 hover:underline"
                 >

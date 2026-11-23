@@ -71,6 +71,27 @@ class Account extends Model
         }
     }
 
+    /**
+     * Bloqueio administrativo. Não mexe no saldo: só impede novas movimentações.
+     */
+    public function block(string $reason): void
+    {
+        $this->forceFill([
+            'status' => AccountStatus::Blocked,
+            'blocked_reason' => $reason,
+            'blocked_at' => now(),
+        ])->save();
+    }
+
+    public function unblock(): void
+    {
+        $this->forceFill([
+            'status' => AccountStatus::Active,
+            'blocked_reason' => null,
+            'blocked_at' => null,
+        ])->save();
+    }
+
     public function formattedNumber(): string
     {
         return "{$this->agency} / {$this->number}";
@@ -81,6 +102,7 @@ class Account extends Model
         return [
             'balance' => 'integer',
             'status' => AccountStatus::class,
+            'blocked_at' => 'datetime',
         ];
     }
 }

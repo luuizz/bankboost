@@ -28,6 +28,11 @@ class TransactionResource extends JsonResource
             'description' => $this->description,
             'counterparty_name' => $this->counterparty_name,
             'transfer_id' => $this->whenLoaded('transfer', fn () => $this->transfer?->uuid),
+            'account' => $this->whenLoaded('account', fn () => [
+                'id' => $this->account->id,
+                'number' => $this->account->number,
+                'holder' => $this->account->relationLoaded('user') ? $this->account->user->name : null,
+            ]),
             'created_at' => $this->created_at?->toIso8601String(),
         ];
     }

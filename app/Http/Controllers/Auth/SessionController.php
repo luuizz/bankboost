@@ -28,7 +28,9 @@ class SessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('panel.dashboard'));
+        $home = $request->user()->isAdmin() ? route('admin.dashboard') : route('panel.dashboard');
+
+        return redirect()->intended($home);
     }
 
     public function destroy(Request $request): RedirectResponse

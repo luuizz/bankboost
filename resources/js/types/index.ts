@@ -21,6 +21,7 @@ export interface Transaction {
     description: string | null;
     counterparty_name: string | null;
     transfer_id?: string | null;
+    account?: { id: number; number: string; holder: string | null };
     created_at: string;
 }
 
@@ -75,7 +76,7 @@ export interface Paginated<T> {
 
 export interface SharedProps {
     appName: string;
-    auth: { user: { name: string; email: string } | null };
+    auth: { user: { name: string; email: string; is_admin: boolean } | null };
     flash: { success: string | null };
     errors: Record<string, string>;
     [key: string]: unknown;
