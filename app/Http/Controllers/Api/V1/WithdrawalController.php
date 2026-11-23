@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\AmountRequest;
+use App\Http\Requests\Banking\AmountRequest;
 use App\Http\Resources\TransactionResource;
 use App\Services\Banking\Ledger;
 use Illuminate\Http\JsonResponse;

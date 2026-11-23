@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Enums\TransferMethod;
 use App\Exceptions\Banking\DestinationAccountNotFound;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\TransferRequest;
+use App\Http\Requests\Banking\TransferRequest;
 use App\Http\Resources\TransferResource;
 use App\Models\Account;
 use App\Models\Transfer;

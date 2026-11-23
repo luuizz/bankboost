@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Enums\PixKeyType;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\PixTransferRequest;
+use App\Http\Requests\Banking\PixTransferRequest;
 use App\Http\Resources\PixRecipientResource;
 use App\Services\Banking\PixService;
 use Illuminate\Http\JsonResponse;

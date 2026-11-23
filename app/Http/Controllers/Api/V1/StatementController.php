@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Enums\TransactionDirection;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\StatementRequest;
+use App\Http\Requests\Banking\StatementRequest;
 use App\Http\Resources\TransactionResource;
 use App\Support\Money;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

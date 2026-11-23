@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\StorePixKeyRequest;
+use App\Http\Requests\Banking\StorePixKeyRequest;
 use App\Http\Resources\PixKeyResource;
 use App\Models\PixKey;
 use App\Services\Banking\PixService;

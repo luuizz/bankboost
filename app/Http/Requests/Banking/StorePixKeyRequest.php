@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests\Banking;
 
 use App\Enums\PixKeyType;
 use Illuminate\Foundation\Http\FormRequest;

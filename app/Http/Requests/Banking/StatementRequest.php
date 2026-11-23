@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests\Banking;
 
 use App\Enums\TransactionDirection;
 use App\Enums\TransactionType;
