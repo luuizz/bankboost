@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(Ledger $ledger, PixService $pix): void
     {
+        $this->call(SiteContentSeeder::class);
+
         $ana = User::factory()->withAccount()->create([
             'name' => 'Ana Souza',
             'email' => 'ana@bankboost.test',

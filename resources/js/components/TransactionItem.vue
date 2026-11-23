@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
+import { PhArrowCircleDown, PhArrowsLeftRight, PhMoney, PhQrCode } from '@phosphor-icons/vue';
 import { computed } from 'vue';
 import { formatDateTime } from '@/lib/money';
 import type { Transaction } from '@/types';
@@ -20,13 +21,13 @@ const icon = computed(() => {
     switch (props.transaction.type) {
         case 'pix_in':
         case 'pix_out':
-            return 'PIX';
+            return PhQrCode;
         case 'deposit':
-            return '+';
+            return PhArrowCircleDown;
         case 'withdrawal':
-            return '−';
+            return PhMoney;
         default:
-            return '⇄';
+            return PhArrowsLeftRight;
     }
 });
 </script>
@@ -34,10 +35,10 @@ const icon = computed(() => {
 <template>
     <li class="flex items-center gap-4 py-3.5">
         <span
-            class="flex size-10 shrink-0 items-center justify-center rounded-full font-title text-xs font-bold"
+            class="flex size-10 shrink-0 items-center justify-center rounded-full"
             :class="isCredit ? 'bg-emerald-50 text-emerald-700' : 'bg-ink-100 text-ink-700'"
         >
-            {{ icon }}
+            <component :is="icon" :size="20" weight="duotone" />
         </span>
 
         <div class="min-w-0 flex-1">
