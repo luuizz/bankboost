@@ -19,6 +19,15 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * Mesmo default do banco, para um usuário recém-criado já responder isAdmin().
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'is_admin' => false,
+    ];
+
     public function isAdmin(): bool
     {
         return $this->is_admin === true;
