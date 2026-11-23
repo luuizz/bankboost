@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+
+@source '../views';
+@source '../js';
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter18pt-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter18pt-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter18pt-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* Mesma paleta da landing (resources/scss/landing/_variables.scss) */
+@theme {
+    --font-title: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    --color-brand-10: #35189c;
+    --color-brand-20: #5431d0;
+    --color-brand-30: #653df5;
+    --color-brand-40: #4d20ef;
+    --color-brand-50: #3401ee;
+
+    --color-accent: #e9c300;
+
+    --color-ink-100: #f5f6fa;
+    --color-ink-200: #dfe1e8;
+    --color-ink-300: #c0c3cc;
+    --color-ink-400: #abafba;
+    --color-ink-500: #979ba6;
+    --color-ink-600: #787c87;
+    --color-ink-700: #5c5f69;
+    --color-ink-800: #393b42;
+    --color-ink-900: #0a0b0d;
+}
+
+@layer components {
+    .card {
+        @apply rounded-2xl border border-ink-200 bg-white p-6 shadow-sm;
+    }
+
+    .label {
+        @apply mb-1.5 block text-sm font-semibold text-ink-800;
+    }
+
+    .input {
+        @apply w-full rounded-xl border border-ink-300 bg-white px-4 py-2.5 text-ink-900 outline-none transition placeholder:text-ink-400 focus:border-brand-30 focus:ring-4 focus:ring-brand-30/15;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-title text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60 bg-brand-40 text-white hover:bg-brand-20;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-title text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60 border border-ink-300 bg-white text-ink-800 hover:border-brand-30 hover:text-brand-40;
+    }
+
+    .error {
+        @apply mt-1.5 text-sm text-red-600;
+    }
+}

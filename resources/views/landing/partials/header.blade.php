@@ -11,9 +11,10 @@
         <li><a href="#">Quem somos</a></li>
         <li><a href="#">Blog</a></li>
         <li><a href="#">Ajuda</a></li>
+      <li><a href="{{ route('login') }}">Entrar</a></li>
       </ul>
 
-      <button class="btn btn-secondary">Abra sua conta digital</button>
+      <a href="{{ route('register') }}" class="btn btn-secondary">Abra sua conta digital</a>
     </nav>
     <button class="btn-mobile">
       <img src="/icon-menu.svg" alt="Menu">

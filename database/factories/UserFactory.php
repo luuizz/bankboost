@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Services\Banking\AccountOpener;
+use App\Support\Cpf;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -27,10 +29,21 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'cpf' => Cpf::generate(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    /**
+     * Já cria o usuário com a conta aberta.
+     */
+    public function withAccount(): static
+    {
+        return $this->afterCreating(function (User $user) {
+            app(AccountOpener::class)->open($user);
+        });
     }
 
     /**
