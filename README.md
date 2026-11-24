@@ -14,14 +14,19 @@ Banco digital fictício criado a partir do projeto da landing do curso Codeboost
 
 ## Rodando localmente (Sail)
 
+Requer Docker. Todos os comandos rodam dentro do Sail.
+
 ```bash
 cp .env.example .env
-composer install
+# primeira vez: instala o vendor (e o Sail) usando o Composer de um container
+docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/var/www/html" -w /var/www/html \
+    laravelsail/php84-composer:latest composer install --ignore-platform-reqs
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
-./vendor/bin/sail artisan migrate
+./vendor/bin/sail artisan migrate --seed
+./vendor/bin/sail artisan storage:link
 ./vendor/bin/sail npm install
-./vendor/bin/sail npm run dev
+./vendor/bin/sail composer dev
 ```
 
 A aplicação fica em `http://localhost` (landing) e `http://localhost/painel` (painel; cadastro em `/abrir-conta`). O Sail já cria o banco `testing` usado pelos testes.
