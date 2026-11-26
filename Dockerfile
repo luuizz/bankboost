@@ -21,8 +21,9 @@ RUN composer dump-autoload --no-dev --optimize --no-scripts
 FROM php:8.4-apache
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libicu-dev libzip-dev unzip \
-    && docker-php-ext-install pdo_mysql intl opcache bcmath \
+    && apt-get install -y --no-install-recommends libicu-dev libzip-dev libpng-dev libjpeg-dev libwebp-dev unzip \
+    && docker-php-ext-configure gd --with-jpeg --with-webp \
+    && docker-php-ext-install pdo_mysql intl opcache bcmath gd \
     && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
 
@@ -42,5 +43,5 @@ RUN php artisan package:discover --ansi \
 COPY docker/start.sh /usr/local/bin/start
 RUN chmod +x /usr/local/bin/start
 
-EXPOSE 10000
+EXPOSE 8080
 CMD ["start"]

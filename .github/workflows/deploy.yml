@@ -1,0 +1,117 @@
+name: Deploy
+
+# Roda depois que o CI passa na main (ou manualmente). Monta a imagem,
+# publica no GitHub Container Registry e atualiza o Droplet via SSH.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/luuizz/bankboost
+
+jobs:
+  image:
+    name: Imagem
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.meta.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - id: meta
+        run: echo "tag=$(git rev-parse --short=12 HEAD)" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ steps.meta.outputs.tag }}
+            ${{ env.IMAGE }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    name: Droplet
+    needs: image
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ vars.APP_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          sparse-checkout: deploy
+
+      - name: Chave SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          echo "${{ secrets.DROPLET_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.DROPLET_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Envia compose e Caddyfile
+        run: scp deploy/compose.yaml deploy/Caddyfile deploy@${{ secrets.DROPLET_HOST }}:/opt/bankboost/
+
+      - name: Atualiza os containers
+        env:
+          TAG: ${{ needs.image.outputs.tag }}
+          REGISTRY_USER: ${{ github.actor }}
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # As variáveis vão pelo stdin, não pela linha de comando do servidor
+          {
+          printf 'TAG=%q REGISTRY_USER=%q REGISTRY_TOKEN=%q\n' "$TAG" "$REGISTRY_USER" "$REGISTRY_TOKEN"
+          cat <<'SCRIPT'
+          set -euo pipefail
+          cd /opt/bankboost
+          test -f .env || { echo "Falta /opt/bankboost/.env"; exit 1; }
+
+          echo "$REGISTRY_TOKEN" | docker login ghcr.io -u "$REGISTRY_USER" --password-stdin
+          export IMAGE_TAG="$TAG"
+          docker compose pull app
+          docker compose up -d --remove-orphans
+          docker logout ghcr.io
+
+          # Espera o app responder (migrations rodam na subida)
+          for i in $(seq 1 30); do
+            if docker compose exec -T app curl -fsS http://localhost:8080/up >/dev/null 2>&1; then
+              echo "App no ar com a imagem $TAG"
+              docker image prune -f >/dev/null
+              exit 0
+            fi
+            sleep 5
+          done
+
+          echo "O app não respondeu em 150 s. Últimos logs:"
+          docker compose logs --tail=80 app
+          exit 1
+          SCRIPT
+          } | ssh deploy@${{ secrets.DROPLET_HOST }} bash -s
+
+      - name: Confere a URL pública
+        if: vars.APP_URL != ''
+        run: curl -fsS --retry 5 --retry-delay 5 "${{ vars.APP_URL }}/up"
