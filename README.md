@@ -10,7 +10,7 @@ Banco digital fictício criado a partir do projeto da landing do curso Codeboost
 - **Painel** do cliente em Inertia + Vue 3 + Tailwind: saldo, extrato com filtros, transferência, Pix e comprovantes
 - **Admin** em Inertia + Vue: visão geral, clientes (bloqueio), transações, blog com upload de capa, FAQ, vagas e mensagens
 - **API** autenticada com Sanctum: contas, extrato com filtros, transferências e Pix simulados ([docs/api.md](docs/api.md))
-- **Deploy** no Render (Docker, plano free) com banco MySQL compatível
+- **Deploy** num Droplet da DigitalOcean com Docker Compose, Caddy e GitHub Actions
 
 ## Rodando localmente (Sail)
 
@@ -46,24 +46,14 @@ npm run typecheck                # TypeScript + Vue (vue-tsc)
 npm run build                    # build do front
 ```
 
-O GitHub Actions roda Pint, testes com MySQL 8.4, typecheck, build do Vite e o build da imagem Docker em todo PR.
+O GitHub Actions roda Pint, testes com MySQL 8.4, typecheck, build do Vite e sobe a stack de produção (app + MySQL + Caddy) para conferir o site por HTTPS em todo PR.
 
 ## Esteira
 
-`feat/*` → PR para `dev` → PR de release `dev` → `main` → deploy automático no Render.
+`feat/*` → PR para `dev` → PR de release `dev` → `main` → deploy automático no Droplet.
 
-## Deploy (Render)
+## Deploy (DigitalOcean)
 
-O `render.yaml` descreve o serviço web em Docker. No início do container rodam `config:cache`, `route:cache`, `view:cache` e `migrate --force`.
+Droplet com Docker Compose (app + MySQL + Caddy com HTTPS automático). Depois que o CI passa na `main`, o workflow **Deploy** publica a imagem no GitHub Container Registry e atualiza o servidor por SSH. Migrations rodam sozinhas na subida.
 
-Variáveis que precisam existir no Render:
-
-| Variável | Observação |
-| --- | --- |
-| `APP_KEY` | gerar com `php artisan key:generate --show` |
-| `APP_URL` | URL pública do serviço |
-| `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` | dados do banco MySQL |
-| `MYSQL_ATTR_SSL_CA` | já vem como `/etc/ssl/certs/ca-certificates.crt` (CA pública) |
-| `MYSQL_SSL_CA_PEM` | opcional: conteúdo do certificado da CA, para provedores com CA própria |
-
-Banco gratuito sugerido: **TiDB Cloud Starter** (compatível com MySQL, porta `4000`, TLS obrigatório).
+Passo a passo completo, do Droplet novo ao primeiro deploy: [docs/deploy.md](docs/deploy.md).
