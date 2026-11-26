@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+@import './theme.css';
+
+@plugin '@tailwindcss/typography';
+
+@source '../views';
+@source '../js/site';
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-white font-body text-ink-800 antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply font-title text-ink-900;
+    }
+
+    ::selection {
+        @apply bg-brand-30 text-white;
+    }
+}
+
+@layer components {
+    .container-site {
+        @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+    }
+
+    .section {
+        @apply py-20 lg:py-28;
+    }
+
+    .eyebrow {
+        @apply font-title text-sm font-semibold tracking-wide text-brand-30 uppercase;
+    }
+
+    .hero-bg {
+        @apply relative overflow-hidden bg-linear-to-br from-brand-10 via-brand-20 to-brand-30 text-white;
+    }
+
+    .field {
+        @apply w-full rounded-xl border border-ink-300 bg-white px-4 py-3 text-ink-900 outline-none transition placeholder:text-ink-400 focus:border-brand-30 focus:ring-4 focus:ring-brand-30/15;
+    }
+
+    .prose-bank {
+        @apply prose prose-lg max-w-none prose-headings:font-title prose-headings:text-ink-900 prose-a:text-brand-40 prose-strong:text-ink-900 prose-blockquote:border-brand-30 prose-li:marker:text-brand-30;
+    }
+}
+
+/* AOS só anima depois que o JS carrega; sem JS o conteúdo aparece normalmente */
+html:not(.js) [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Slider de depoimentos */
+.swiper-pagination-bullet {
+    background: var(--color-ink-300);
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    width: 1.5rem;
+    border-radius: 999px;
+    background: var(--color-brand-40);
+}
+
+/* Controles dos simuladores */
+.range {
+    --progress: 50%;
+    @apply h-2 w-full cursor-pointer appearance-none rounded-full;
+    background: linear-gradient(to right, var(--color-brand-30) var(--progress), var(--color-ink-200) var(--progress));
+}
+
+.range::-webkit-slider-thumb {
+    @apply size-6 appearance-none rounded-full border-4 border-white bg-brand-40 shadow-md;
+}
+
+.range::-moz-range-thumb {
+    @apply size-5 rounded-full border-4 border-white bg-brand-40 shadow-md;
+}

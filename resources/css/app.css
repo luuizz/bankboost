@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+@import './theme.css';
+
+@plugin '@tailwindcss/typography';
+
+@source '../js';
+
+@layer components {
+    .card {
+        @apply rounded-2xl border border-ink-200 bg-white p-6 shadow-sm;
+    }
+
+    .label {
+        @apply mb-1.5 block text-sm font-semibold text-ink-800;
+    }
+
+    .input {
+        @apply w-full rounded-xl border border-ink-300 bg-white px-4 py-2.5 text-ink-900 outline-none transition placeholder:text-ink-400 focus:border-brand-30 focus:ring-4 focus:ring-brand-30/15;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-title text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60 bg-brand-40 text-white hover:bg-brand-20;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-title text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60 border border-ink-300 bg-white text-ink-800 hover:border-brand-30 hover:text-brand-40;
+    }
+
+    .error {
+        @apply mt-1.5 text-sm text-red-600;
+    }
+}
